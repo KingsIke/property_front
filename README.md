@@ -13,7 +13,7 @@ This is the frontend application for the Property Listing project, built with Re
 
 1. Clone the repository:
    ```javascript
-   git clone https://github.com/username/repository-name.git
+   git clone https://github.com/KingsIke/property_front.git
    cd property-frontend
    ```
 2. Install dependencies:
