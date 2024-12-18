@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { API_URL } from '@/config';
 
 interface Property {
   id: number;
@@ -23,7 +24,11 @@ const PropertyList: React.FC = () => {
   useEffect(() => {
     const fetchProperties = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/properties?page=${page}&limit=10`);
+        //LOCAL
+        // const response = await fetch(`http://localhost:5000/api/properties?page=${page}&limit=10`);
+        //PRODUCTION
+        const response = await fetch(`${API_URL}/properties?page=${page}&limit=10`);
+
         if (!response.ok) {
           throw new Error('Failed to fetch properties');
         }
@@ -45,7 +50,7 @@ const PropertyList: React.FC = () => {
     const numericId = parseInt(searchId, 10);
     if (!isNaN(numericId) && numericId > 0) {
       try {
-        const response = await fetch(`http://localhost:5000/api/properties/${numericId}`);
+        const response = await fetch(`${API_URL}/properties/${numericId}`);
         if (!response.ok) {
           return 'Property not found';
         }
@@ -59,7 +64,7 @@ const PropertyList: React.FC = () => {
     }
   };
 
- 
+
   const handleNextPage = () => {
     if (page * 10 < totalProperties) setPage(prev => prev + 1);
   };
@@ -68,7 +73,7 @@ const PropertyList: React.FC = () => {
     if (page > 1) setPage(prev => prev - 1);
   };
 
-  
+
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchId(value);
@@ -85,7 +90,7 @@ const PropertyList: React.FC = () => {
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-8">Property Listings</h1>
 
-      
+
       <div className="mb-4">
         <input
           type="text"
@@ -120,6 +125,7 @@ const PropertyList: React.FC = () => {
           </div>
         ))}
       </div>
+
 
       <div className="flex justify-between mt-4">
         <button
