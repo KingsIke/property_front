@@ -114,7 +114,7 @@ const PropertyList: React.FC = () => {
         {properties.map((property) => (
           <div key={property.id} className="border p-4 rounded-lg shadow-lg">
             <img
-              src={property.imageUrl || 'https://via.placeholder.com/300'}
+              src={property.imageUrl || 'https://images.app.goo.gl/Axn19oFgR3XnWJ266'}
               alt={property.name}
               className="w-full h-48 object-cover mb-4 rounded-lg"
             />
